@@ -42,6 +42,5 @@ func main() {
 	// Registers routes
 	router.RegisterRoutes(app, catalogService)
 
-	//app.Listen(config.AppConfig.Port)
-	app.Listen(":3000")
+	app.Listen(config.AppConfig.Server.Port)
 }

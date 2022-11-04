@@ -9,7 +9,12 @@ import (
 )
 
 type Config struct {
+	Server 			Server
 	Database		db.Config
+}
+
+type Server struct {
+	Port			string
 }
 
 var AppConfig Config
