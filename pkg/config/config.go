@@ -1,0 +1,36 @@
+package config
+
+import (
+	"fmt"
+	"github.com/nutteen/png-core/core/db"
+	"github.com/spf13/viper"
+	"os"
+	"strings"
+	"log"
+)
+
+type Config struct {
+	DatabaseConfig		db.Config
+}
+
+var AppConfig Config
+
+func LoadConfig() error {
+	viper.SetConfigName("config")
+	viper.SetConfigType("yml")
+	viper.AddConfigPath("../config/")
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+
+	if err := viper.ReadInConfig(); err != nil {
+		if _, isFileNotFound := err.(viper.ConfigFileNotFoundError); isFileNotFound {
+			log.Fatalln("CONFIG", "config file not found")
+		} else {
+			log.Fatalln(fmt.Errorf("CONFIG:fatal error config file: %s ", err))
+		}
+	}
+
+	viper.AutomaticEnv()
+	err := viper.Unmarshal(&AppConfig)
+
+	return err
+}
