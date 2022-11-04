@@ -4,13 +4,12 @@ import (
 	"fmt"
 	"github.com/nutteen/png-core/core/db"
 	"github.com/spf13/viper"
-	"os"
-	"strings"
 	"log"
+	"strings"
 )
 
 type Config struct {
-	DatabaseConfig		db.Config
+	Database		db.Config
 }
 
 var AppConfig Config
@@ -18,7 +17,7 @@ var AppConfig Config
 func LoadConfig() error {
 	viper.SetConfigName("config")
 	viper.SetConfigType("yml")
-	viper.AddConfigPath("../config/")
+	viper.AddConfigPath("./config")
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
 	if err := viper.ReadInConfig(); err != nil {

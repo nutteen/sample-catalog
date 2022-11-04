@@ -4,17 +4,17 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/nutteen/png-core/core/logger"
 	"github.com/nutteen/png-core/core/utils/errorutils"
-	"github.com/nutteen/sample-catalog/pkg/models"
 	"github.com/nutteen/png-core/core/validator"
+	"github.com/nutteen/sample-catalog/pkg/models"
 	"github.com/nutteen/sample-catalog/pkg/service/catalogservice"
 )
 
 type Handler struct {
-	CatalogService 	*catalogservice.Service
+	catalogService 	*catalogservice.Service
 }
 
-func NewHandler() *Handler {
-	return &Handler{}
+func NewHandler(service *catalogservice.Service) *Handler {
+	return &Handler{catalogService: service}
 }
 
 func (h Handler) GetItemsCatalog(c *fiber.Ctx) error {
@@ -33,7 +33,7 @@ func (h Handler) GetItemsCatalog(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(errorResponse)
 	}
 
-	response, err := h.CatalogService.GetItemsCatalog(ctx, request)
+	response, err := h.catalogService.GetItemsCatalog(ctx, request)
 
 	if err != nil {
 		errorResponse := errorutils.NewErrorResponseModel(errorutils.GENERIC_ERROR, err.Error())

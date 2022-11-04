@@ -3,8 +3,8 @@ package catalogservice
 import (
 	"context"
 	"fmt"
-	"github.com/nutteen/sample-catalog/pkg/models"
 	"github.com/nutteen/png-core/core/logger"
+	"github.com/nutteen/sample-catalog/pkg/models"
 	"github.com/nutteen/sample-catalog/pkg/repository/items"
 )
 
