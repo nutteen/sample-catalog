@@ -240,6 +240,8 @@ github.com/mitchellh/mapstructure v1.5.0 h1:jeMsZIYE/09sWLaz43PL7Gy6RuMjD2eJVyua
 github.com/mitchellh/mapstructure v1.5.0/go.mod h1:bFUtVrKA4DC2yAKiSyO/QUcy7e+RRV2QTWOzhPopBRo=
 github.com/nutteen/png-core v0.0.0-20221104091305-3c1a68277a44 h1:PJYuLVMcgckSYJlMBgQYRAZ98n7HoCSC+nk5AjrHmMs=
 github.com/nutteen/png-core v0.0.0-20221104091305-3c1a68277a44/go.mod h1:+tczadrgAUQTgRHY1PdBiD2VPKmW2owAnmUQTp316QI=
+github.com/nutteen/png-core v0.0.0-20221104114644-3148d00f23a2 h1:hDdGdJ6JHoT9NYVL63Dh4GMgacEJUuKp0QKD2rUofxw=
+github.com/nutteen/png-core v0.0.0-20221104114644-3148d00f23a2/go.mod h1:+tczadrgAUQTgRHY1PdBiD2VPKmW2owAnmUQTp316QI=
 github.com/pelletier/go-toml v1.9.5 h1:4yBQzkHv+7BHq2PQUZF3Mx0IYxG7LsP222s7Agd3ve8=
 github.com/pelletier/go-toml v1.9.5/go.mod h1:u1nR/EPcESfeI/szUZKdtJ0xRNbUoANCkoOuaOx1Y+c=
 github.com/pelletier/go-toml/v2 v2.0.5 h1:ipoSadvV8oGUjnUbMub59IDPPwfxF694nG/jwbMiyQg=

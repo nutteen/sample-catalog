@@ -1,5 +1,7 @@
 package models
 
+import "github.com/shopspring/decimal"
+
 type GetItemsResponse struct {
 	Items 		[]ItemDetail 		`json:"items"`
 }
@@ -7,4 +9,5 @@ type GetItemsResponse struct {
 type ItemDetail struct {
 	ItemId	string	`json:"itemId"`
 	Description string `json:"description"`
+	Price decimal.Decimal `json:"price"`
 }

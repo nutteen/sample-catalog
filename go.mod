@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/gofiber/fiber/v2 v2.39.0
-	github.com/nutteen/png-core v0.0.0-20221104091305-3c1a68277a44
+	github.com/nutteen/png-core v0.0.0-20221104114644-3148d00f23a2
 	github.com/shopspring/decimal v1.3.1
 	github.com/spf13/viper v1.13.0
 	gorm.io/gorm v1.24.1

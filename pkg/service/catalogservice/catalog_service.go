@@ -30,6 +30,7 @@ func (service Service) GetItemsCatalog (ctx context.Context, request models.GetI
 		itemDto := models.ItemDetail{
 			ItemId: item.ID,
 			Description: item.Description,
+			Price: item.Price,
 		}
 		itemsDto = append(itemsDto, itemDto)
 	}

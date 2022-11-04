@@ -15,6 +15,6 @@ func NewGormItemRepository(gormDB *gorm.DB) *GormItemRepository{
 
 func (repo GormItemRepository) GetByIds(ids []string) ([]items.Item, error) {
 	var itemEntities []items.Item
-	result := repo.db.Find(itemEntities, ids)
+	result := repo.db.Find(&itemEntities, ids)
 	return itemEntities, result.Error
 }
