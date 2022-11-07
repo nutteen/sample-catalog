@@ -2,19 +2,20 @@ package config
 
 import (
 	"fmt"
-	"github.com/nutteen/png-core/core/db"
-	"github.com/spf13/viper"
 	"log"
 	"strings"
+
+	"github.com/nutteen/png-core/core/db"
+	"github.com/spf13/viper"
 )
 
 type Config struct {
-	Server 			Server
-	Database		db.Config
+	Server   Server
+	Database db.Config
 }
 
 type Server struct {
-	Port			string
+	Port string
 }
 
 var AppConfig Config
