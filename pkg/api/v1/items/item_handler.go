@@ -1,11 +1,11 @@
 package items
 
 import (
+	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
-	"github.com/nutteen/png-core/core/logger"
 	"github.com/nutteen/png-core/core/utils/errorutils"
-	"github.com/nutteen/png-core/core/validator"
-	"github.com/nutteen/sample-catalog/pkg/models"
+	corevalidator "github.com/nutteen/png-core/core/validator"
+	"github.com/nutteen/sample-catalog/pkg/model"
 	"github.com/nutteen/sample-catalog/pkg/service/catalogservice"
 )
 
@@ -18,27 +18,27 @@ func NewHandler(service *catalogservice.Service) *Handler {
 }
 
 func (h Handler) GetItemsCatalog(c *fiber.Ctx) error {
-	request := models.GetItemsRequest{}
+	request := model.GetItemsRequest{}
 
 	ctx	:= c.UserContext()
-	logger.Log.Debug("Get item Catalog handler", logger.LogContext(ctx))
 
 	if err := c.BodyParser(&request); err != nil {
-		errorResponse := errorutils.NewErrorResponseModel(errorutils.BAD_REQUEST_BODY_PARSE_ERROR, err.Error())
-		return c.Status(fiber.StatusBadRequest).JSON(errorResponse)
+		errorResponse := errorutils.BAD_REQUEST_BODY_PARSE_ERROR.NewErrorResponseModel(err.Error())
+		return c.Status(errorResponse.Error.Status).JSON(errorResponse)
 	}
 
-	if err := validator.Validate.Struct(&request); err != nil {
-		errorResponse := errorutils.NewErrorResponseModel(errorutils.BAD_REQUEST_VALDATION_ERROR, err.Error())
-		return c.Status(fiber.StatusBadRequest).JSON(errorResponse)
+	if err := corevalidator.Validate.Struct(&request); err != nil {
+		invalidParams := errorutils.ValidationErrorsToInvalidParams(err.(validator.ValidationErrors))
+		errorResponse := errorutils.BAD_REQUEST_VALDATION_ERROR.NewErrorResponseModel(err.Error(), invalidParams)
+		return c.Status(errorResponse.Error.Status).JSON(errorResponse)
 	}
 
 	response, err := h.catalogService.GetItemsCatalog(ctx, request)
 
 	if err != nil {
-		errorResponse := errorutils.NewErrorResponseModel(errorutils.GENERIC_ERROR, err.Error())
-		return c.Status(fiber.StatusInternalServerError).JSON(errorResponse)
+		errorResponse := errorutils.UNKNOWN_ERROR.NewErrorResponseModel(err.Error())
+		return c.Status(errorResponse.Error.Status).JSON(errorResponse)
 	}
 
-	return c.Status(fiber.StatusCreated).JSON(&response)
+	return c.Status(fiber.StatusOK).JSON(&response)
 }

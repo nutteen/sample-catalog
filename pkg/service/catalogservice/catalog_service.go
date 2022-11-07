@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/nutteen/png-core/core/logger"
-	"github.com/nutteen/sample-catalog/pkg/models"
+	"github.com/nutteen/sample-catalog/pkg/model"
 	"github.com/nutteen/sample-catalog/pkg/repository/items"
 )
 
@@ -18,16 +18,16 @@ func NewService(itemRepository items.ItemRepository) *Service {
 	}
 }
 
-func (service Service) GetItemsCatalog (ctx context.Context, request models.GetItemsRequest) (*models.GetItemsResponse, error){
+func (service Service) GetItemsCatalog (ctx context.Context, request model.GetItemsRequest) (*model.GetItemsResponse, error){
 	logger.Log.Debug(fmt.Sprintf("Getting items"))
 
 	itemEntities, err := service.itemRepository.GetByIds(request.ItemIds)
 
 	// Return data
-	var itemsDto []models.ItemDetail
+	var itemsDto []model.ItemDetail
 
 	for _, item := range itemEntities {
-		itemDto := models.ItemDetail{
+		itemDto := model.ItemDetail{
 			ItemId: item.ID,
 			Description: item.Description,
 			Price: item.Price,
@@ -35,7 +35,7 @@ func (service Service) GetItemsCatalog (ctx context.Context, request models.GetI
 		itemsDto = append(itemsDto, itemDto)
 	}
 
-	response := models.GetItemsResponse{
+	response := model.GetItemsResponse{
 		Items: itemsDto,
 	}
 
