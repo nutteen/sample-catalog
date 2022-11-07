@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"github.com/nutteen/png-core/core/logger"
 	"github.com/nutteen/sample-catalog/pkg/model"
-	"github.com/nutteen/sample-catalog/pkg/repository/items"
+	"github.com/nutteen/sample-catalog/pkg/repository/item"
 )
 
 type Service struct {
-	itemRepository items.ItemRepository
+	itemRepository item.ItemRepository
 }
 
-func NewService(itemRepository items.ItemRepository) *Service {
+func NewService(itemRepository item.ItemRepository) *Service {
 	return &Service{
 		itemRepository: itemRepository,
 	}

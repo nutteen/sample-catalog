@@ -9,7 +9,7 @@ import (
 	"github.com/nutteen/png-core/core/middlewares/usercontext"
 	"github.com/nutteen/png-core/core/validator"
 	"github.com/nutteen/sample-catalog/pkg/config"
-	"github.com/nutteen/sample-catalog/pkg/infrastructure/repository/items"
+	"github.com/nutteen/sample-catalog/pkg/infrastructure/repository/item"
 	"github.com/nutteen/sample-catalog/pkg/router"
 	"github.com/nutteen/sample-catalog/pkg/service/catalogservice"
 	"log"
@@ -36,7 +36,7 @@ func main() {
 	app.Use(middlewarelogger.NewLogger(logger.Log, middlewarelogger.ConfigDefault))
 
 	// Setup  service
-	itemRepository := items.NewGormItemRepository(dbInstance)
+	itemRepository := item.NewGormItemRepository(dbInstance)
 	catalogService := catalogservice.NewService(itemRepository)
 
 	// Registers routes
